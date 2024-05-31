@@ -1,23 +1,22 @@
-// Estructura pila con Arreglos que posee 10 elementos donde trabaja con el tipo de dato FLOAT y borra un elemento
-
 #include <iostream>
 #include <string>
 
 using namespace std;
 
 struct Pila {
-    float items[10]; // Cambiamos el tipo de dato a float
+    float items[10];
     int tope;
 };
 
 // Declaración de métodos
 void inicializar(Pila &p);
-void insertar(Pila &p, float x); // Cambiamos el tipo de dato a float
-float quitar(Pila &p); // Cambiamos el tipo de dato a float
+void insertar(Pila &p, float x);
+float quitar(Pila &p);
+void mostrarPila(const Pila &p); // Agregamos el método mostrarPila
 
 int main() {
     Pila p;
-    float x; // Cambiamos el tipo de dato a float
+    float x;
 
     inicializar(p);
 
@@ -27,7 +26,11 @@ int main() {
         insertar(p, x);
     }
 
-    cout << "Se quitó este elemento: " << quitar(p);
+    cout << "Se quitó este elemento: " << quitar(p) << endl;
+
+    // Mostramos la pila
+    cout << "Elementos en la pila:" << endl;
+    mostrarPila(p);
 
     return 0;
 }
@@ -39,7 +42,7 @@ void inicializar(Pila &p) {
 
 void insertar(Pila &p, float x) {
     if (p.tope == 9) {
-        cout << "La pila está llena";
+        cout << "La pila está llena" << endl;
     } else {
         p.tope++;
         p.items[p.tope] = x;
@@ -52,7 +55,13 @@ float quitar(Pila &p) {
         p.tope--;
         return x;
     } else {
-        cout << "La pila ya está vacía";
+        cout << "La pila ya está vacía" << endl;
         exit(1);
+    }
+}
+
+void mostrarPila(const Pila &p) {
+    for (int i = p.tope; i >= 0; i--) {
+        cout << p.items[i] << endl;
     }
 }
